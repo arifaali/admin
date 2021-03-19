@@ -1,0 +1,52 @@
+<script> 
+
+$(document).ready(function(){
+ $('#insert_form').on("submit", function(event){  
+  event.preventDefault();  
+  if($('#name1').val() == "")  
+  {  
+   alert("Name is required");  
+  }  
+  else if($('#desc1').val() == '')  
+  {  
+   alert("Description is required");  
+  }  
+  else if($('#price1').val() == '')
+  {  
+   alert("Price is required");  
+  }
+  else if($('#prod_qty1').val() == '')
+  {  
+   alert("Product quantity is required");  
+  }
+  else if($('#prod_vat').val() == '')
+  {  
+   alert("Product vat is required");  
+  }
+   
+  else  
+  {  
+   $.ajax({  
+    url:"insert.php",  
+    method:"POST",  
+    data:$('#insert_form').serialize(),  
+    beforeSend:function(){  
+     $('#insert').val("Inserting");  
+    },  
+    success:function(data){console.log(data);
+     $('#insert_form')[0].reset();  
+     $('#add_data_Modal').modal('hide');
+     location.reload();
+     
+    }  
+   });  
+  }  
+ });
+ $(".tabnav").click(function () { 
+       var i = $(this).attr('data-id');
+       $("#subcatId").val(i);
+});
+       
+}); 
+
+ </script>
